@@ -15,7 +15,10 @@ class MyApp extends StatelessWidget {
       routes: {
         'home':(context) => HomeScreen(),
         'login':(context) => LoginScreen(),
-      }
+      },
+      theme: ThemeData.dark().copyWith(
+        scaffoldBackgroundColor: Colors.grey[300]
+      ),
     );
   }
 }
