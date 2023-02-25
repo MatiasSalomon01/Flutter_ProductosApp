@@ -7,7 +7,11 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: AuthBackground()
+      body: AuthBackground(child: Container(
+        height: 100,
+        width: double.infinity,
+        color: Colors.red,
+      ),)
    );
   }
 }
