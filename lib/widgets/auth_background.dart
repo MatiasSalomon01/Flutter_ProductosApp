@@ -28,7 +28,6 @@ class _HeaderIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Container(
-        height: 200,
         width: double.infinity,
         margin: EdgeInsets.only(top: 30),
         child: Icon(Icons.person_pin, color: Colors.white,size: 100,),
@@ -46,7 +45,7 @@ class _PurpleBox extends StatelessWidget {
 
     return Container(
       width: double.infinity,
-      height: size.height*0.4,
+      height: size.height * 0.4,
       decoration: _purpleBackground(),
       child: Stack(
         children: [

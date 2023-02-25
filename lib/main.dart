@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:productos_app/screens/screens.dart';
+import 'package:productos_app/theme/theme.dart';
 
 void main() => runApp(const MyApp());
 
@@ -16,9 +17,7 @@ class MyApp extends StatelessWidget {
         'home':(context) => HomeScreen(),
         'login':(context) => LoginScreen(),
       },
-      theme: ThemeData.dark().copyWith(
-        scaffoldBackgroundColor: Colors.grey[300]
-      ),
+      theme: ThemeApp.theme
     );
   }
 }
