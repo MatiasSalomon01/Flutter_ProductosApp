@@ -29,8 +29,9 @@ class MyApp extends StatelessWidget {
       title: 'Productos App',
       initialRoute: 'login',
       routes: {
-        'home':(context) => HomeScreen(),
         'login':(context) => LoginScreen(),
+        'register':(context) => RegisterScreen(),
+        'home':(context) => HomeScreen(),
         'product':(context) => ProductScreen(),
       },
       theme: ThemeApp.theme
