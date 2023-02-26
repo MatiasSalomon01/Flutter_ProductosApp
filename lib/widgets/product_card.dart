@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:productos_app/models/models.dart';
 
 class ProductCard extends StatelessWidget {
+
+  final Product product;
+
+  const ProductCard({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -14,21 +19,22 @@ class ProductCard extends StatelessWidget {
         child: Stack(
           alignment: Alignment.bottomLeft,
           children: [
-            _BackgroundImage(),
+            _BackgroundImage(product.picture),
 
-            _productDetails(),
+            _ProductDetails(title: product.id, subTitle: product.name),
 
             Positioned(
               top: 0,
               right: 0,
-              child: _PriceTag()
+              child: _PriceTag(priceTag: product.price)
             ),
 
-            Positioned(
-              top: 0,
-              left: 0,
-              child: _NotAvailable()
-            )
+            if(!product.available)
+              Positioned(
+                top: 0,
+                left: 0,
+                child: _NotAvailable()
+              )
           ],
         ),
       ),
@@ -65,7 +71,7 @@ class _NotAvailable extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 10),
           child: Text(
-            'No dispnible',
+            'No Disponible',
             style: TextStyle(
               color: Colors.white,
               fontSize: 20
@@ -79,6 +85,10 @@ class _NotAvailable extends StatelessWidget {
 
 class _PriceTag extends StatelessWidget {
 
+  final double priceTag;
+
+  const _PriceTag({super.key, required this.priceTag});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -89,13 +99,13 @@ class _PriceTag extends StatelessWidget {
         color: Colors.indigo,
         borderRadius: BorderRadius.only(topRight: Radius.circular(25), bottomLeft: Radius.circular(25))
       ),
-      child: const FittedBox(
+      child: FittedBox(
         fit: BoxFit.contain,
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Text(
-            '\$103.99',
-            style: TextStyle(
+            '\$$priceTag',
+            style: const TextStyle(
               color: Colors.white,
               fontSize: 20
             ),
@@ -106,7 +116,14 @@ class _PriceTag extends StatelessWidget {
   }
 }
 
-class _productDetails extends StatelessWidget {
+class _ProductDetails extends StatelessWidget {
+
+  final String? title;
+  final String subTitle;
+
+  const _ProductDetails({super.key, this.title, required this.subTitle});
+
+  
 
   @override
   Widget build(BuildContext context) {
@@ -119,20 +136,20 @@ class _productDetails extends StatelessWidget {
         decoration: _buildBoxDecoration(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Text(
-              'Disco duro G', 
-              style: TextStyle(
+              title ?? '', 
+              style: const TextStyle(
                 color: Colors.white, 
                 fontSize: 20,
-                fontWeight: FontWeight.bold
+                fontWeight: FontWeight.bold,
               ),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
             Text(
-              'id del disco duro', 
-              style: TextStyle(
+              subTitle, 
+              style: const TextStyle(
                 color: Colors.white,
                 fontSize: 15
               ),
@@ -151,6 +168,10 @@ class _productDetails extends StatelessWidget {
 
 class _BackgroundImage extends StatelessWidget {
 
+  final String? picture;
+
+  const _BackgroundImage(this.picture);
+
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
@@ -158,9 +179,10 @@ class _BackgroundImage extends StatelessWidget {
       child: Container(
         height: 400,
         width: double.infinity,
-        child: const FadeInImage(
-          placeholder: AssetImage('assets/jar-loading.gif'),
-          image: NetworkImage('https://via.placeholder.com/400x300/f6f6f6'),
+        child: FadeInImage(
+          placeholder: const AssetImage('assets/jar-loading.gif'),
+          //image: NetworkImage('https://via.placeholder.com/400x300/f6f6f6'),
+          image: NetworkImage('$picture'),
         ),
       ),
     );

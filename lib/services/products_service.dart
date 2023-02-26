@@ -17,7 +17,11 @@ class ProductsService extends ChangeNotifier{
   }
 
   //<List<Product>>
-  Future loadProducts() async{
+  Future<List<Product>> loadProducts() async{
+
+    isLoading = true;
+    notifyListeners();
+
     final url = Uri.https(_baseUrl, 'products.json');
     final res = await http.get(url);
 
@@ -25,11 +29,11 @@ class ProductsService extends ChangeNotifier{
 
     productsMap.forEach((key, value) { 
       final tempProduct = Product.fromJson(value);
-
       tempProduct.id = key;
-
       products.add(tempProduct);
     });
-    print(products[0].name);
+    isLoading = false;
+    notifyListeners();
+    return products;
   }
 }
