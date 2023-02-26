@@ -21,7 +21,7 @@ class ProductCard extends StatelessWidget {
           children: [
             _BackgroundImage(product.picture),
 
-            _ProductDetails(title: product.id, subTitle: product.name),
+            _ProductDetails(title: product.name, subTitle: product.id),
 
             Positioned(
               top: 0,
@@ -118,10 +118,10 @@ class _PriceTag extends StatelessWidget {
 
 class _ProductDetails extends StatelessWidget {
 
-  final String? title;
-  final String subTitle;
+  final String title;
+  final String? subTitle;
 
-  const _ProductDetails({super.key, this.title, required this.subTitle});
+  const _ProductDetails({super.key, required this.title,  this.subTitle});
 
   
 
@@ -138,7 +138,7 @@ class _ProductDetails extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              title ?? '', 
+              title, 
               style: const TextStyle(
                 color: Colors.white, 
                 fontSize: 20,
@@ -148,7 +148,7 @@ class _ProductDetails extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
             ),
             Text(
-              subTitle, 
+              subTitle ?? '', 
               style: const TextStyle(
                 color: Colors.white,
                 fontSize: 15

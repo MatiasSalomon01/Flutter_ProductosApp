@@ -57,7 +57,8 @@ class ProductsService extends ChangeNotifier{
 
     final decodedData = res.body;
 
-    print(decodedData);
+    final index = products.indexWhere((element) => element.id == product.id);
+    products[index] = product;
 
     return product.id!;
   }
