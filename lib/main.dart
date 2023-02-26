@@ -12,10 +12,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Productos App',
-      initialRoute: 'home',
+      initialRoute: 'product',
       routes: {
         'home':(context) => HomeScreen(),
         'login':(context) => LoginScreen(),
+        'product':(context) => ProductScreen(),
       },
       theme: ThemeApp.theme
     );
