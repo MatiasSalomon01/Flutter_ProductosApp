@@ -113,12 +113,10 @@ class _LoginForm extends StatelessWidget {
 
                 if(errorMessage == null){
                   Navigator.pushNamed(context, 'home');
-                }else{
+                } else {
                   print(errorMessage);
                 }
-
                 loginForm.isLoading = false;
-
               },
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 15),
