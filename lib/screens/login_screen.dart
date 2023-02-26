@@ -100,7 +100,7 @@ class _LoginForm extends StatelessWidget {
 
                 loginForm.isLoading = false;
 
-                Navigator.pushReplacementNamed(context, 'home');
+                Navigator.pushNamed(context, 'home');
               },
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 15),
