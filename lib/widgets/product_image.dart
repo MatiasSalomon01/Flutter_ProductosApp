@@ -15,7 +15,7 @@ class ProductImage extends StatelessWidget {
         width: double.infinity,
         height: 450,
         child: Opacity(
-          opacity: 0.8,
+          opacity: 0.85,
           child: ClipRRect(
             borderRadius: BorderRadius.only(topLeft: Radius.circular(25), topRight: Radius.circular(25)),
             child: url == null
