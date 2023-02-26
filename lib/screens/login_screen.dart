@@ -88,7 +88,9 @@ class _LoginForm extends StatelessWidget {
 
             MaterialButton(
               onPressed: () {
-                loginForm.isValidForm();
+                if(!loginForm.isValidForm()) return;
+
+                Navigator.pushReplacementNamed(context, 'home');
               },
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)), 
               disabledColor: Colors.grey,
@@ -96,7 +98,8 @@ class _LoginForm extends StatelessWidget {
               color: Colors.deepPurple,
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 15),
-                child: const Text('Ingresar', style: TextStyle(color: Colors.white),)),
+                child: const Text('Ingresar', style: TextStyle(color: Colors.white))
+              ),
             )
           ],
         )
