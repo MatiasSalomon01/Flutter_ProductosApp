@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:productos_app/theme/theme.dart';
+import 'package:productos_app/providers/login_form_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:productos_app/ui/input_decorations.dart';
 import 'package:productos_app/widgets/widgets.dart';
 
@@ -21,7 +22,12 @@ class LoginScreen extends StatelessWidget {
                     SizedBox(height: 10,),
                     Text('Login', style: Theme.of(context).textTheme.headlineMedium),
                     SizedBox(height: 10,),
-                    _LoginForm()
+
+                    ChangeNotifierProvider(
+                      create: (context) => LoginFormProvider(),
+                      child: _LoginForm(),
+                    ),
+                    
                   ],
                 )
               ),
@@ -36,12 +42,16 @@ class LoginScreen extends StatelessWidget {
 }
 
 class _LoginForm extends StatelessWidget {
-  const _LoginForm({super.key});
+  //const _LoginForm({super.key});
 
   @override
   Widget build(BuildContext context) {
+
+    final loginForm = Provider.of<LoginFormProvider>(context);
+
     return Container(
       child: Form(
+        key: loginForm.formKey,
         autovalidateMode: AutovalidateMode.onUserInteraction,
         child: Column(
           children: [
@@ -57,6 +67,7 @@ class _LoginForm extends StatelessWidget {
                 RegExp regExp  = RegExp(pattern);
                 return regExp.hasMatch(value ?? '') ? null : 'Valor ingresado incorrecto';
               },
+              onChanged: (value) => loginForm.email = value,
             ),
             const SizedBox(height: 30,),
             TextFormField(
@@ -71,11 +82,14 @@ class _LoginForm extends StatelessWidget {
                 if(value != null && value.length >= 6) return null;
                 return 'La contraseña debe de ser de 6 caracteres';                
               },
+              onChanged: (value) => loginForm.password = value,
             ),
             const SizedBox(height: 30,),
 
             MaterialButton(
-              onPressed: () {},
+              onPressed: () {
+                loginForm.isValidForm();
+              },
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)), 
               disabledColor: Colors.grey,
               elevation: 0,
