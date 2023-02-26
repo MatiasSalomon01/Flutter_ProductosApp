@@ -12,6 +12,7 @@ class Product {
     String name;
     String? picture;
     double price;
+    String? id;
 
     factory Product.fromRawJson(String str) => Product.fromJson(json.decode(str));
 
