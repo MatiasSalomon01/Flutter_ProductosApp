@@ -168,9 +168,9 @@ class _ProductDetails extends StatelessWidget {
 
 class _BackgroundImage extends StatelessWidget {
 
-  final String? picture;
+  final String? url;
 
-  const _BackgroundImage(this.picture);
+  const _BackgroundImage(this.url);
 
   @override
   Widget build(BuildContext context) {
@@ -179,11 +179,17 @@ class _BackgroundImage extends StatelessWidget {
       child: Container(
         height: 400,
         width: double.infinity,
-        child: FadeInImage(
-          placeholder: const AssetImage('assets/jar-loading.gif'),
-          //image: NetworkImage('https://via.placeholder.com/400x300/f6f6f6'),
-          image: NetworkImage('$picture'),
-        ),
+        child: url == null 
+        ? const Image(
+            image: AssetImage('assets/no-image.png'),
+            fit: BoxFit.cover,
+          ) 
+        : FadeInImage(
+            placeholder: const AssetImage('assets/jar-loading.gif'),
+            //image: NetworkImage('https://via.placeholder.com/400x300/f6f6f6'),
+            image: NetworkImage(url!),
+            fit: BoxFit.cover,
+          ),
       ),
     );
   }
