@@ -38,6 +38,7 @@ class MyApp extends StatelessWidget {
 
         'checking':(context) => CheckAuthScreen(),
       },
+      scaffoldMessengerKey: NotificationsService.messegenderKey,
       theme: ThemeApp.theme
     );
   }

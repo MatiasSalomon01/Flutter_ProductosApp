@@ -58,7 +58,11 @@ class AuthService extends ChangeNotifier {
       // return decodedRes['idToken'];
       return null;
     }else{
-      return decodedRes['error']['message'];
+      final message = decodedRes['error']['message'];
+      if(message == "EMAIL_NOT_FOUND")
+        return 'Correo electrónico no encontrado';
+      if(message == "INVALID_PASSWORD")
+        return 'Contraseña inválida';
     }
   }
 
