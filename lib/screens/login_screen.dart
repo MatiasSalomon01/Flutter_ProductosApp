@@ -117,7 +117,7 @@ class _LoginForm extends StatelessWidget {
                   Navigator.pushNamed(context, 'home');
                 } else {
                   print(errorMessage);
-                  NotificationsService.showSnackBar(errorMessage);
+                  NotificationsService.showSnackBar(errorMessage, Colors.red);
                 }
                 loginForm.isLoading = false;
               },

@@ -20,7 +20,6 @@ class CheckAuthScreen extends StatelessWidget {
 
               if(snapshot.data == ''){
                 Future.microtask(() {
-                  //Navigator.of(context).pushReplacementNamed('login');
                   Navigator.of(context).pushReplacement(PageRouteBuilder(
                     pageBuilder: (context, animation, secondaryAnimation) => LoginScreen(),
                     transitionDuration: Duration(seconds: 0)
@@ -28,7 +27,6 @@ class CheckAuthScreen extends StatelessWidget {
                 });
               }else{
                 Future.microtask(() {
-                  //Navigator.of(context).pushReplacementNamed('login');
                   Navigator.of(context).pushReplacement(PageRouteBuilder(
                     pageBuilder: (context, animation, secondaryAnimation) => HomeScreen(),
                     transitionDuration: Duration(seconds: 0)
